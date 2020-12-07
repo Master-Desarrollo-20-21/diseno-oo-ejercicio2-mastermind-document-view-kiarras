@@ -1,3 +1,5 @@
+package models;
+
 import views.CombinationView;
 
 public class ProposedCombination extends Combination {

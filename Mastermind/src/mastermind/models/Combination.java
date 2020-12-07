@@ -1,4 +1,4 @@
-
+package models;
 
 public abstract class Combination {
     protected static final int MAX_COLORS = 4;

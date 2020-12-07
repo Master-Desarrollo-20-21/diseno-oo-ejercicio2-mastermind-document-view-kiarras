@@ -1,4 +1,6 @@
-import views.StartView;
+
+import models.Game;
+import views.ResumeView;
 
 public class Mastermind {
 
@@ -15,7 +17,7 @@ public class Mastermind {
     }
     
     private boolean isResumed() {
-        if(new StartView().isResumed()){
+        if(new ResumeView().isResumed()){
             this.game = new Game();
             return true;
         }

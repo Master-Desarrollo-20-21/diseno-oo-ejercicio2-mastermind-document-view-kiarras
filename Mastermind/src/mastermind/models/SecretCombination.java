@@ -1,8 +1,8 @@
-
+package models;
 
 import java.util.Random;
 
-public class SecretCombination extends inCombination {
+public class SecretCombination extends Combination {
     public SecretCombination(){
         code = setRandomCombination();
     }

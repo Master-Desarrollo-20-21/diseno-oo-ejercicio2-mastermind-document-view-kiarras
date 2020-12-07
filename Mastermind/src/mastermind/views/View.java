@@ -1,4 +1,4 @@
-
+package views;
 public abstract class View {
     Console console;
 
