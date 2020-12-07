@@ -1,0 +1,80 @@
+@startuml Mastermind
+class Mastermind{
+  - start()
+  - isResumed()
+  + main(String[])
+}
+Mastermind *--> Game
+Mastermind ...> StartView
+class Game{
+    ~ MAX_ATTEMPS : int
+    ~ WINS : int
+    - results : int[][]
+    - proposedCombinations : ProposedCombination[]
+    - SecretCombination
+    + play()
+    - previousAttempts(int) : String[]
+    - getAttempt(int) : String
+    - finalResult(int) : boolean
+}
+Game *--> SecretCombination
+Game *--> "0..10" ProposedCombination
+Game ...> GameView
+abstract class Combination{
+    ~ MAX_COLORS : int
+    + Code : String
+    + CharCode : Char[]
+    {abstract} + show()
+}
+Combination *--> "4" Color
+enum Color{
+    RED     "r"
+    YELLOW  "y"
+    BLUE    "b"
+    GREEN   "g"
+    PURPLE  "p"
+    ORANGE  "o"
+    + valueOf(char) : Color
+    + valueOf(int) : char
+    + getKeyword() : int
+}
+Combination <|-- SecretCombination
+Combination <|-- ProposedCombination
+Class SecretCombination{
+    - setRamdomCombination()
+    - isContain(int, char[])
+    + isEquals(String)
+}
+Class ProposedCombination{
+    - getValidCombination() : String
+    - isColorOK(String) : boolean
+    + getProposedCombination() : ProposedCombination
+}
+ProposedCombination ...> CombinationView
+Class Console{
+    + input()
+    + out()
+}
+View *--> Console
+View <|--- StartView
+View <|--- GameView
+View <|--- CombinationView
+
+Class StartView{
+    + isResumed()
+}
+Class GameView{
+    + showTitle()
+    + showAttempsNumber(int)
+    + showPreviousAttempts(String[])
+    + finalResult(boolean)
+}
+Class CombinationView{
+    ~ PROPOSE
+    ~ WRONG_LENGTH
+    ~ WRONG_COLORS
+    + inProposedCombination(String)
+    + inWrongLength()
+    + inWrongColors()
+}
+@enduml
