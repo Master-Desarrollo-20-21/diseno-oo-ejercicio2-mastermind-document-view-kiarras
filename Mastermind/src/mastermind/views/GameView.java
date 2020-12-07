@@ -2,17 +2,17 @@ package views;
 
 public class GameView extends View {
     public void showTitle() {
-        console.out("----- MASTERMIND ----- \n");
+        console.out(StringsViews.TITLE.getMessage());
     }
     public void showAttempsNumber(int i) {
-        console.out(i + " attempt(s): \n xxxx \n");
+        console.out(i + StringsViews.ATTEMPS.getMessage());
     }
 
     public void finalResult(Boolean result) {
         if (result) {
-            console.out("You've won!!! ;-) \n");
+            console.out(StringsViews.WON.getMessage());
         } else {
-            console.out("You've lost!!! :-( \n");
+            console.out(StringsViews.LOST.getMessage());
         }
     }
 
