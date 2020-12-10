@@ -1,27 +1,21 @@
 
 import models.Game;
-import views.ResumeView;
+import views.View;
 
 public class Mastermind {
 
     private Game game;
+    private View view;
 
     public Mastermind(){
         this.game = new Game();
+        this.view = new View(this.game);
     }
 
     private void start() {
         do {
-            this.game.play();
-        } while (isResumed());
-    }
-    
-    private boolean isResumed() {
-        if(new ResumeView().isResumed()){
-            this.game = new Game();
-            return true;
-        }
-        return false;
+            this.view.play();
+        } while (this.view.isResumed());
     }
 
     public static void main(String[] args) {
