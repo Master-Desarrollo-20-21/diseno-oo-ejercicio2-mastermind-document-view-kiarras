@@ -2,7 +2,7 @@ package views;
 
 import models.Game;
 
-public class CombinationView extends View {
+public class CombinationView extends ConsoleView {
 
     private Game game;
 

@@ -2,8 +2,9 @@ package views;
 
 import models.Game;
 
-public class GameView extends View {
+public class GameView extends ConsoleView {
     private Game game;
+    
     public GameView(Game game) {
         this.game = game;
 	}

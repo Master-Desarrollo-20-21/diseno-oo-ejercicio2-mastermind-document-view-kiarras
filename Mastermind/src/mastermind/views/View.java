@@ -3,14 +3,9 @@ package views;
 import models.Game;
 
 public class View {
-    Console console;
     protected Game game;
     private GameView gameView;
     private CombinationView combinationView;
-
-    public View() {
-        this.console = new Console();
-    }
 
 	public View(Game game) {
         this.game = game;

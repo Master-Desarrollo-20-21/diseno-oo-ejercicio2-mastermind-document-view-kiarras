@@ -1,6 +1,6 @@
 package views;
 
-public class ResumeView extends View {
+public class ResumeView extends ConsoleView {
 
     public boolean isResumed() {
         console.out(StringsViews.ASKRESUME.getMessage());
