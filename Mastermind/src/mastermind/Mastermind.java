@@ -4,7 +4,7 @@ import views.View;
 
 public class Mastermind {
 
-    private Game game;
+    protected Game game;
     private View view;
 
     public Mastermind(){

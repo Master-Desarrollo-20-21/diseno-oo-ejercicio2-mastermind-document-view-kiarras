@@ -1,14 +1,20 @@
 package views;
 
+import models.Game;
+
 public class GameView extends View {
-    public void showTitle() {
+    private Game game;
+    public GameView(Game game) {
+        this.game = game;
+	}
+	public void showTitle() {
         console.out(StringsViews.TITLE.getMessage());
     }
     public void showAttempsNumber(int i) {
         console.out(i + StringsViews.ATTEMPS.getMessage());
     }
 
-    public void finalResult(Boolean result) {
+    public void finalResult(boolean result) {
         if (result) {
             console.out(StringsViews.WON.getMessage());
         } else {
