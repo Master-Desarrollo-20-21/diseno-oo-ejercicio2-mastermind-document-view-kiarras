@@ -47,6 +47,11 @@ package models {
         - isColorOK(String) : boolean
         + getProposedCombination() : ProposedCombination
     }
+    enum Error{
+        ERRORLENGTH
+        ERRORCOLOR
+        NOERROR
+    }
     Game *--> SecretCombination
     Game *--> "0..10" ProposedCombination
     Combination *--> "4" Color
@@ -74,9 +79,9 @@ package views{
     ~ PROPOSE
     ~ WRONG_LENGTH
     ~ WRONG_COLORS
-    + inProposedCombination(String)
-    + inWrongLength()
-    + inWrongColors()
+    + inProposedCombination(String value,Error) : String
+    + addNewAttempt(int)
+    - getProposedCombination(): ProposedCombination 
     }
 }
 package utils {
@@ -91,4 +96,6 @@ Mastermind *--> View
 View ...> Game
 ConsoleView *--> Console
 ProposedCombination ...> CombinationView
+CombinationView ...> Error
+ProposedCombination..> Error
 @enduml

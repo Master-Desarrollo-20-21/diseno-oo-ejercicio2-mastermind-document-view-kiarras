@@ -20,7 +20,13 @@ public class CombinationView extends ConsoleView {
         console.out(StringsViews.PROPOSE.getMessage());
         return console.inString();
     }
-
+	private String inProposedCombination(String value,Error validCombination) {
+		if(validCombination == Error.ERRORLENGHT)
+			return StringsViews.WRONG_LENGTH.getMessage();
+		if(validCombination == Error.ERRORCOLOR)
+			return StringsViews.WRONG_COLORS.getMessage();
+		return value;
+	}
 
 	public void addNewAttempt(int i) {
         this.game.addNewAttempt(i,getProposedCombination());
@@ -37,11 +43,5 @@ public class CombinationView extends ConsoleView {
         return proposedCombination;
     }
 
-	private String inProposedCombination(String value,Error validCombination) {
-		if(validCombination == Error.ERRORLENGHT)
-			return StringsViews.WRONG_LENGTH.getMessage();
-		if(validCombination == Error.ERRORCOLOR)
-			return StringsViews.WRONG_COLORS.getMessage();
-		return value;
-	}
+
 }
