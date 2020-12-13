@@ -1,80 +1,94 @@
 @startuml Mastermind
 class Mastermind{
   - start()
-  - isResumed()
   + main(String[])
 }
-Mastermind *--> Game
-Mastermind ...> StartView
-class Game{
-    ~ MAX_ATTEMPS : int
-    ~ WINS : int
-    - results : int[][]
-    - proposedCombinations : ProposedCombination[]
-    - SecretCombination
-    + play()
-    - previousAttempts(int) : String[]
-    - getAttempt(int) : String
-    - finalResult(int) : boolean
-}
-Game *--> SecretCombination
-Game *--> "0..10" ProposedCombination
-Game ...> GameView
-abstract class Combination{
-    ~ MAX_COLORS : int
-    + Code : String
-    + CharCode : Char[]
-    {abstract} + show()
-}
-Combination *--> "4" Color
-enum Color{
-    RED     "r"
-    YELLOW  "y"
-    BLUE    "b"
-    GREEN   "g"
-    PURPLE  "p"
-    ORANGE  "o"
-    + valueOf(char) : Color
-    + valueOf(int) : char
-    + getKeyword() : int
-}
-Combination <|-- SecretCombination
-Combination <|-- ProposedCombination
-Class SecretCombination{
-    - setRamdomCombination()
-    - isContain(int, char[])
-    + isEquals(String)
-}
-Class ProposedCombination{
-    - getValidCombination() : String
-    - isColorOK(String) : boolean
-    + getProposedCombination() : ProposedCombination
-}
-ProposedCombination ...> CombinationView
-Class Console{
-    + input()
-    + out()
-}
-View *--> Console
-View <|--- StartView
-View <|--- GameView
-View <|--- CombinationView
+package models {
+    class Game{
+        ~ MAX_ATTEMPS : int
+        ~ WINS : int
+        - results : int[][]
+        - proposedCombinations : ProposedCombination[]
+        - SecretCombination
 
-Class StartView{
-    + isResumed()
+        + previousAttempts(int) : String[]
+        + getAttempt(int) : String
+        + finalResult(int) : boolean
+        + getResult() : boolean
+        + addNewAttempt(int)
+        + isFinished(int) : boolean
+    }
+
+    class Combination{
+        ~ MAX_COLORS : int
+        + Code : String
+        + CharCode : Char[]
+        {abstract} + getCombination() : String
+    }
+    enum Color{
+        RED     "r"
+        YELLOW  "y"
+        BLUE    "b"
+        GREEN   "g"
+        PURPLE  "p"
+        ORANGE  "o"
+        + valueOf(char) : Color
+        + valueOf(int) : char
+        + getKeyword() : int
+    }
+
+    Class SecretCombination{
+        - setRamdomCombination()
+        - isContain(int, char[])
+        + isEquals(String)
+    }
+    Class ProposedCombination{
+        - getValidCombination() : String
+        - isColorOK(String) : boolean
+        + getProposedCombination() : ProposedCombination
+    }
+    Game *--> SecretCombination
+    Game *--> "0..10" ProposedCombination
+    Combination *--> "4" Color
+    Combination <|-- SecretCombination
+    Combination <|-- ProposedCombination
 }
-Class GameView{
+package views{
+    View *--> ConsoleView
+    ConsoleView <|--- GameView
+    ConsoleView <|--- CombinationView
+
+    Class View{
+        - Game
+        - setGame()
+        + isResumed()
+        + play(Game)
+    }
+    Class GameView{
     + showTitle()
     + showAttempsNumber(int)
     + showPreviousAttempts(String[])
     + finalResult(boolean)
-}
-Class CombinationView{
+    }
+    Class CombinationView{
     ~ PROPOSE
     ~ WRONG_LENGTH
     ~ WRONG_COLORS
     + inProposedCombination(String)
     + inWrongLength()
     + inWrongColors()
+    }
 }
+package utils {
+    Class Console{
+    + input()
+    + out()
+    }
+}
+Mastermind *--> Game
+Game ...> GameView
+Mastermind *--> View
+View ...> Game
+ConsoleView *--> Console
+ProposedCombination ...> CombinationView
 @enduml

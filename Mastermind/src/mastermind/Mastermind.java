@@ -9,12 +9,12 @@ public class Mastermind {
 
     public Mastermind(){
         this.game = new Game();
-        this.view = new View(this.game);
+        this.view = new View();
     }
 
     private void start() {
         do {
-            this.view.play();
+            this.view.play(this.game);
         } while (this.view.isResumed());
     }
 

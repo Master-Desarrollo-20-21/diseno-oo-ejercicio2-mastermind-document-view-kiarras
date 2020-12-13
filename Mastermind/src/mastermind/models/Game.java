@@ -4,9 +4,9 @@ public class Game {
 
     public static final int MAX_ATTEMPS = 10;
     public static final int WINS = 4;
-    public ProposedCombination[] proposedCombinations;
+    private ProposedCombination[] proposedCombinations;
     private SecretCombination secretCombination;
-    public int[][] results;
+    private int[][] results;
 
     public Game() {
         proposedCombinations = new ProposedCombination[MAX_ATTEMPS];
@@ -27,9 +27,7 @@ public class Game {
     }
 
     public boolean finalResult(int i) {
-        if (results[i][0] == 4)
-            return true;
-        return false;
+        return results[i][0] == WINS;
     }
 
 	public boolean getResult() {
@@ -39,5 +37,9 @@ public class Game {
 	public void addNewAttempt(int i) {
         proposedCombinations[i] = new ProposedCombination();
         results[i] = secretCombination.isEqual(proposedCombinations[i].getProposedCombination().getCombination());
-	}
+    }
+    
+    public boolean isFinished(int i) {
+        return i >= MAX_ATTEMPS || finalResult(i-1);
+    }
 }
