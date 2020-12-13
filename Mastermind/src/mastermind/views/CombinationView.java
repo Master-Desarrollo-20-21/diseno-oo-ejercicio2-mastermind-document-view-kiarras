@@ -1,6 +1,8 @@
 package views;
 
+import models.Error;
 import models.Game;
+import models.ProposedCombination;
 
 public class CombinationView extends ConsoleView {
 
@@ -19,16 +21,27 @@ public class CombinationView extends ConsoleView {
         return console.inString();
     }
 
-	public String inWrongLength() {
-		return inProposedCombination(StringsViews.WRONG_LENGTH.getMessage());
-	}
-
-	public String inWrongColors() {
-		return inProposedCombination(StringsViews.WRONG_COLORS.getMessage());
-    }
 
 	public void addNewAttempt(int i) {
-        this.game.addNewAttempt(i);
+        this.game.addNewAttempt(i,getProposedCombination());
 	}
-    
+
+	private ProposedCombination getProposedCombination() {
+		ProposedCombination proposedCombination = new ProposedCombination();
+		String value = inProposedCombination("");
+		
+		while(proposedCombination.isValidCombination(value)!= Error.NOERROR){
+			value = inProposedCombination(value, proposedCombination.isValidCombination(value));
+		}
+		proposedCombination.setCombination(value);
+        return proposedCombination;
+    }
+
+	private String inProposedCombination(String value,Error validCombination) {
+		if(validCombination == Error.ERRORLENGHT)
+			return StringsViews.WRONG_LENGTH.getMessage();
+		if(validCombination == Error.ERRORCOLOR)
+			return StringsViews.WRONG_COLORS.getMessage();
+		return value;
+	}
 }

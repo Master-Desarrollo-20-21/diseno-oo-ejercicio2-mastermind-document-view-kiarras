@@ -34,8 +34,8 @@ public class Game {
 		return false;
 	}
 
-	public void addNewAttempt(int i) {
-        proposedCombinations[i] = new ProposedCombination();
+	public void addNewAttempt(int i, ProposedCombination proposedCombination) {
+        proposedCombinations[i] = proposedCombination;
         results[i] = secretCombination.isEqual(proposedCombinations[i].getProposedCombination().getCombination());
     }
     

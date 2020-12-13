@@ -1,33 +1,25 @@
 package models;
 
-import views.CombinationView;
 
 public class ProposedCombination extends Combination {
 
-    private CombinationView view;
+    public Error isValidCombination(String value) {
 
-    public ProposedCombination() {
-        this.view = new CombinationView();
-        code = getValidCombination();
-    }
-
-    private String getValidCombination() {
-        String value = this.view.inProposedCombination("");
-        while (value.length() != 4) {
-            value = this.view.inWrongLength();
+		if (value.length() != MAX_COLORS) {
+            return Error.ERRORLENGHT;
         } 
-        while (!isColorsOK(value)) {
-            value = this.view.inWrongColors();
+        if (!isColorsOK(value)) {
+            return Error.ERRORCOLOR;
         }
-        return value;
+        return Error.NOERROR;
     }
-
-    private boolean isColorsOK(String value) {
+	private boolean isColorsOK(String value) {
         for (char c : value.toCharArray()) {
                 if(Color.valueOf(c) == null) return false;
             }
         return true;
     }
+
 
     public ProposedCombination getProposedCombination() {
 		return this;
@@ -37,4 +29,8 @@ public class ProposedCombination extends Combination {
     public String getCombination() {
         return code;
     }
+
+	public void setCombination(String value) {
+        code = value;
+	}
 }
