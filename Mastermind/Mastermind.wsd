@@ -25,17 +25,6 @@ package models {
         + CharCode : Char[]
         {abstract} + getCombination() : String
     }
-    enum Color{
-        RED     "r"
-        YELLOW  "y"
-        BLUE    "b"
-        GREEN   "g"
-        PURPLE  "p"
-        ORANGE  "o"
-        + valueOf(char) : Color
-        + valueOf(int) : char
-        + getKeyword() : int
-    }
 
     Class SecretCombination{
         - setRamdomCombination()
@@ -47,14 +36,8 @@ package models {
         - isColorOK(String) : boolean
         + getProposedCombination() : ProposedCombination
     }
-    enum Error{
-        ERRORLENGTH
-        ERRORCOLOR
-        NOERROR
-    }
     Game *--> SecretCombination
     Game *--> "0..10" ProposedCombination
-    Combination *--> "4" Color
     Combination <|-- SecretCombination
     Combination <|-- ProposedCombination
 }
@@ -89,12 +72,29 @@ package utils {
     + input()
     + out()
     }
+    enum Color{
+        RED     "r"
+        YELLOW  "y"
+        BLUE    "b"
+        GREEN   "g"
+        PURPLE  "p"
+        ORANGE  "o"
+        + valueOf(char) : Color
+        + valueOf(int) : char
+        + getKeyword() : int
+    }
+    enum Error{
+        ERRORLENGTH
+        ERRORCOLOR
+        NOERROR
+    }
 }
 Mastermind *--> Game
-Game ...> GameView
 Mastermind *--> View
+Game ...> GameView
 View ...> Game
 ConsoleView *--> Console
+Combination *--> "4" Color
 ProposedCombination ...> CombinationView
 CombinationView ...> Error
 ProposedCombination..> Error

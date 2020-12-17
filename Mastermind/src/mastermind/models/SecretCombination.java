@@ -2,6 +2,8 @@ package models;
 
 import java.util.Random;
 
+import utils.Color;
+
 public class SecretCombination extends Combination {
     public SecretCombination(){
         code = setRandomCombination();

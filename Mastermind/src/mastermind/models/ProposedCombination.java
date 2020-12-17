@@ -1,5 +1,7 @@
 package models;
 
+import utils.Error;
+import utils.Color;
 
 public class ProposedCombination extends Combination {
 

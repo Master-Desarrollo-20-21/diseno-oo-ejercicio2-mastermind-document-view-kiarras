@@ -26,6 +26,7 @@ public class View {
 
     private void setGame(Game game) {
         this.game = game;
+        this.game.newSecretCombination();
         this.gameView = new GameView(this.game);
         this.combinationView = new CombinationView(this.game);
     }

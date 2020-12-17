@@ -1,6 +1,6 @@
 package views;
 
-import models.Error;
+import utils.Error;
 import models.Game;
 import models.ProposedCombination;
 
@@ -22,9 +22,9 @@ public class CombinationView extends ConsoleView {
     }
 	private String inProposedCombination(String value,Error validCombination) {
 		if(validCombination == Error.ERRORLENGHT)
-			return StringsViews.WRONG_LENGTH.getMessage();
+			return inProposedCombination(StringsViews.WRONG_LENGTH.getMessage());
 		if(validCombination == Error.ERRORCOLOR)
-			return StringsViews.WRONG_COLORS.getMessage();
+			return inProposedCombination(StringsViews.WRONG_COLORS.getMessage());
 		return value;
 	}
 

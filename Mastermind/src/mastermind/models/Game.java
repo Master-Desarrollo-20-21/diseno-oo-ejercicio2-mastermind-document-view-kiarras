@@ -11,7 +11,6 @@ public class Game {
     public Game() {
         proposedCombinations = new ProposedCombination[MAX_ATTEMPS];
         results = new int[MAX_ATTEMPS][];
-        secretCombination = new SecretCombination();
     }
 
     public String[] previousAttempts(int previous) {
@@ -42,4 +41,8 @@ public class Game {
     public boolean isFinished(int i) {
         return i >= MAX_ATTEMPS || finalResult(i-1);
     }
+
+	public void newSecretCombination() {
+        secretCombination = new SecretCombination();
+	}
 }
